@@ -6,12 +6,14 @@ const pick=(o,...ks)=>{for(const k of ks){if(o&&o[k]!==undefined&&o[k]!==null&&S
 function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 function badge(s=''){let c=/完成|已备|已收到/.test(s)?'good':/待确认|未开始|尚未/.test(s)?'bad':'warn';return `<span class="badge ${c}">${esc(s||'—')}</span>`}
 function table(headers,rows){return `<table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.length?rows.join(''):`<tr><td colspan="${headers.length}" class="muted">暂无记录</td></tr>`}</tbody></table>`}
+function resourceButton(url,label){return url&&/^https?:\/\//.test(String(url))?`<a class="button" href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}</a>`:`<span class="muted">未上传</span>`}
 function normalizeClass(x){return {
   name:pick(x,'班级','name'), topic:pick(x,'当前课题','topic','currentTopic'), progress:pick(x,'实际进度','progress'), next:pick(x,'下节衔接','next'),
   date:pick(x,'最近上课日期','date'), headTeacher:pick(x,'班主任','headTeacher'), psychRep:pick(x,'心理委员','psychRep'), watchStudents:pick(x,'重点关注学生','watchStudents'), note:pick(x,'特殊备注','note')
 }}
 function normalizeCourse(x){return {
-  grade:pick(x,'年级','grade'), week:pick(x,'周次','week'), unit:pick(x,'单元','unit'), title:pick(x,'课程','title'), status:pick(x,'状态','status'), ppt:pick(x,'PPT','ppt'), plan:pick(x,'班级进度/安排','plan'), note:pick(x,'备注','note')
+  grade:pick(x,'年级','grade'), week:pick(x,'周次','week'), unit:pick(x,'单元','unit'), title:pick(x,'课程','title'), status:pick(x,'状态','status'),
+  ppt:pick(x,'PPT','ppt'), lessonPlan:pick(x,'教案','lessonPlan'), plan:pick(x,'班级进度/安排','plan'), note:pick(x,'备注','note')
 }}
 function render(){
   const classes=(data.classes||[]).map(normalizeClass);
@@ -23,7 +25,7 @@ function render(){
   const gradeRows=list=>list.map(c=>`<tr><td><strong>${esc(c.name)}</strong></td><td>${esc(c.topic||'—')}</td><td>${esc(c.progress||'—')}</td><td>${esc(c.next||'—')}</td><td>${esc(c.date||'—')}</td><td>${esc(c.headTeacher||'—')}</td><td>${esc(c.psychRep||'—')}</td><td>${esc(c.watchStudents||'—')}</td><td>${esc(c.note||'—')}</td></tr>`);
   $('grade4').innerHTML=table(['班级','当前课题','实际进度','下节衔接','最近上课','班主任','心理委员','重点关注','特殊备注'],gradeRows(classes.filter(c=>String(c.name).startsWith('4.'))));
   $('grade5').innerHTML=table(['班级','当前课题','实际进度','下节衔接','最近上课','班主任','心理委员','重点关注','特殊备注'],gradeRows(classes.filter(c=>String(c.name).startsWith('5.'))));
-  $('courseCards').innerHTML=courses.length?courses.map(c=>`<article class="card"><h3>${esc(c.title)}</h3><div class="meta">${esc(c.grade)} · ${esc(c.week)}${c.unit?` · ${esc(c.unit)}`:''}</div>${badge(c.status)}<p><strong>课件：</strong>${esc(c.ppt||'未登记')}</p><p><strong>进度 / 安排：</strong>${esc(c.plan||'—')}</p>${c.note?`<p><strong>核心内容：</strong>${esc(c.note)}</p>`:''}</article>`).join(''):'<div class="muted">暂无课程资源</div>';
+  $('courseCards').innerHTML=courses.length?courses.map(c=>`<article class="card"><h3>${esc(c.title)}</h3><div class="meta">${esc(c.grade)} · ${esc(c.week)}${c.unit?` · ${esc(c.unit)}`:''}</div>${badge(c.status)}<div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0">${resourceButton(c.ppt,'打开PPT')}${resourceButton(c.lessonPlan,'打开教案')}</div><p><strong>进度 / 安排：</strong>${esc(c.plan||'—')}</p>${c.note?`<p><strong>核心内容：</strong>${esc(c.note)}</p>`:''}</article>`).join(''):'<div class="muted">暂无课程资源</div>';
   const wk=(data.weekly||[]);const wkRows=wk.map(x=>`<tr><td>${esc(pick(x,'事项','title')||'—')}</td><td>${esc(pick(x,'类别','type')||'—')}</td><td>${esc(pick(x,'截止日期','due')||'—')}</td><td>${badge(pick(x,'状态','status')||'未开始')}</td><td>${esc(pick(x,'优先级','priority')||'—')}</td></tr>`);$('homeWeekly').innerHTML=table(['事项','类别','截止','状态','优先级'],wkRows.slice(0,8));$('weeklyTable').innerHTML=table(['事项','类别','截止','状态','优先级'],wkRows);
   const mt=data.meetings||[];$('meetingTable').innerHTML=table(['日期','类型','主题','组织/地点','待跟进','思考/心得'],mt.map(x=>`<tr><td>${esc(pick(x,'日期','date')||'—')}</td><td>${esc(pick(x,'类型','type')||'—')}</td><td>${esc(pick(x,'主题','title')||'—')}</td><td>${esc(pick(x,'组织/地点','place')||'—')}</td><td>${esc(pick(x,'待跟进','follow')||'—')}</td><td>${esc(pick(x,'自己的思考/心得','reflection')||'—')}</td></tr>`));
   const ap=data.appointments||[];$('appointmentTable').innerHTML=table(['日期','时间','学生代号','班级','状态'],ap.map(x=>`<tr><td>${esc(pick(x,'日期','date')||'—')}</td><td>${esc(pick(x,'时间','time')||'—')}</td><td>${esc(pick(x,'学生代号','student','code')||'—')}</td><td>${esc(pick(x,'班级','cls')||'—')}</td><td>${badge(pick(x,'状态','status')||'—')}</td></tr>`));
