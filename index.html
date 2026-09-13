@@ -10,7 +10,7 @@
   <header class="topbar">
     <div>
       <h1>心理教师工作台</h1>
-      <p>课程进度 · 备课资源 · 周重点 · 会议教研 · 咨询预约</p>
+      <p>课程进度 · 备课资源 · 周重点 · 会议教研 · 特殊儿童观察 · 咨询预约</p>
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end">
       <a class="button" href="https://docs.google.com/spreadsheets/d/1MOfg1CpTSydQy0DEAWryEKms7qFipElj0A7VrSb7Om8/edit" target="_blank" rel="noopener">编辑工作台</a>
@@ -27,6 +27,7 @@
     <button data-page="courses">课程资源库</button>
     <button data-page="weekly">本周重点</button>
     <button data-page="meetings">会议 / 教研</button>
+    <button data-page="special">特殊儿童 / 观察</button>
     <button data-page="appointments">咨询预约</button>
     <button data-page="cases">个案索引</button>
   </nav>
@@ -73,6 +74,32 @@
     <section id="courses" class="page"><div class="cards" id="courseCards"></div></section>
     <section id="weekly" class="page"><div class="panel"><div id="weeklyTable"></div></div></section>
     <section id="meetings" class="page"><div class="panel"><div id="meetingTable"></div></div></section>
+
+    <section id="special" class="page">
+      <div class="privacy" style="margin-bottom:14px">特殊儿童与观察记录涉及学生隐私，因此不通过公开网页接口展示姓名或详细内容；网页这里只保留安全入口，具体记录在你自己的 Google Sheet 中。</div>
+      <div class="cards">
+        <article class="card">
+          <h3>特殊儿童档案</h3>
+          <p class="meta">记录学生代号、班级、班主任、年级负责人、关注类型、主要表现、下一步观察计划与当前状态。</p>
+          <a class="button" href="https://docs.google.com/spreadsheets/d/1MOfg1CpTSydQy0DEAWryEKms7qFipElj0A7VrSb7Om8/edit#gid=1335028456" target="_blank" rel="noopener">打开特殊儿童档案</a>
+        </article>
+        <article class="card">
+          <h3>观察计划 / 记录</h3>
+          <p class="meta">既可以先记“哪天第几节去哪个班观察什么”，也可以在观察后补关键行为、互动、初步判断和后续行动。</p>
+          <a class="button" href="https://docs.google.com/spreadsheets/d/1MOfg1CpTSydQy0DEAWryEKms7qFipElj0A7VrSb7Om8/edit#gid=1612563702" target="_blank" rel="noopener">打开观察计划记录</a>
+        </article>
+        <article class="card">
+          <h3>全校班级信息</h3>
+          <p class="meta">已录入1—6年级全部班级的班主任、年级负责人和年级负责领导，后续新增观察计划时可直接查。</p>
+          <a class="button" href="https://docs.google.com/spreadsheets/d/1MOfg1CpTSydQy0DEAWryEKms7qFipElj0A7VrSb7Om8/edit#gid=84474707" target="_blank" rel="noopener">打开全校班级信息</a>
+        </article>
+      </div>
+      <div class="panel">
+        <div class="sectionTitle"><h2>以后你可以直接这样告诉我</h2></div>
+        <p>例如：“下周二第二节去3.3观察A03课堂注意力”“把5.2的B01加进特殊儿童，先观察两周”“今天观察完4.6的C02，记录他在小组任务里频繁离座”。我会把计划写进观察表，需要的话再同步到 Google Calendar。</p>
+      </div>
+    </section>
+
     <section id="appointments" class="page"><div class="privacy">咨询区只显示必要的预约信息。正式个案记录仍保存在受权限控制的 Google Drive 中。</div><div class="panel"><div id="appointmentTable"></div></div></section>
     <section id="cases" class="page"><div class="privacy">这里仅显示个案代号、状态与记录入口，不在 GitHub 中保存任何咨询正文。</div><div class="cards" id="caseCards"></div></section>
 
