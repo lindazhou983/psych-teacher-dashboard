@@ -12,7 +12,12 @@
       <h1>心理教师工作台</h1>
       <p>课程进度 · 备课资源 · 周重点 · 会议教研 · 咨询预约</p>
     </div>
-    <div class="status" id="syncStatus">等待连接云端数据</div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end">
+      <a class="button" href="https://docs.google.com/spreadsheets/d/1MOfg1CpTSydQy0DEAWryEKms7qFipElj0A7VrSb7Om8/edit" target="_blank" rel="noopener">编辑工作台</a>
+      <a class="button" href="https://drive.google.com/drive/folders/1c1UQUZNZrVuuij3QbiHazk9S9XzEFEDm" target="_blank" rel="noopener">上传课程资源</a>
+      <a class="button" href="https://calendar.google.com/calendar/u/0/r/day" target="_blank" rel="noopener">打开日历</a>
+      <div class="status" id="syncStatus">等待连接云端数据</div>
+    </div>
   </header>
 
   <nav class="tabs">
@@ -27,7 +32,20 @@
 
   <main>
     <section id="home" class="page active">
+      <div class="panel" style="padding:18px 20px">
+        <div style="display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap">
+          <div>
+            <div class="muted" style="font-size:13px;margin-bottom:4px">今天</div>
+            <div id="todayDate" style="font-size:24px;font-weight:800">—</div>
+          </div>
+          <div class="muted">课程、待办和日程会逐步汇总到这里</div>
+        </div>
+      </div>
       <div class="metrics" id="metrics"></div>
+      <div class="panel">
+        <div class="sectionTitle"><h2>今日日程</h2><a class="button" href="https://calendar.google.com/calendar/u/0/r/day" target="_blank" rel="noopener">打开 Google Calendar</a></div>
+        <div id="todayCalendar"></div>
+      </div>
       <div class="panel">
         <div class="sectionTitle"><h2>当前课程进度</h2><span>11个班</span></div>
         <div id="homeProgress"></div>
@@ -69,6 +87,6 @@
   </main>
 
   <script src="config.js?v=20260913-2"></script>
-  <script src="app.js?v=20260913-4"></script>
+  <script src="app.js?v=20260913-5"></script>
 </body>
 </html>
