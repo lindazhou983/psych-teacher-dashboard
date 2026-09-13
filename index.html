@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>心理教师工作台</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>心理教师工作台</h1>
+      <p>课程进度 · 备课资源 · 周重点 · 会议教研 · 咨询预约</p>
+    </div>
+    <div class="status" id="syncStatus">等待连接云端数据</div>
+  </header>
+
+  <nav class="tabs">
+    <button class="active" data-page="home">总览</button>
+    <button data-page="progress">课程进度矩阵</button>
+    <button data-page="courses">课程资源库</button>
+    <button data-page="weekly">本周重点</button>
+    <button data-page="meetings">会议 / 教研</button>
+    <button data-page="appointments">咨询预约</button>
+    <button data-page="cases">个案索引</button>
+  </nav>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="metrics" id="metrics"></div>
+      <div class="panel">
+        <div class="sectionTitle"><h2>当前课程进度</h2><span>11个班</span></div>
+        <div id="homeProgress"></div>
+      </div>
+      <div class="panel">
+        <div class="sectionTitle"><h2>本周待办</h2></div>
+        <div id="homeWeekly"></div>
+      </div>
+    </section>
+
+    <section id="progress" class="page">
+      <div class="panel">
+        <div class="sectionTitle"><h2>四年级</h2><span>4.1–4.6</span></div>
+        <div class="tableWrap" id="grade4"></div>
+      </div>
+      <div class="panel">
+        <div class="sectionTitle"><h2>五年级</h2><span>5.1–5.5</span></div>
+        <div class="tableWrap" id="grade5"></div>
+      </div>
+    </section>
+
+    <section id="courses" class="page"><div class="cards" id="courseCards"></div></section>
+    <section id="weekly" class="page"><div class="panel"><div id="weeklyTable"></div></div></section>
+    <section id="meetings" class="page"><div class="panel"><div id="meetingTable"></div></div></section>
+    <section id="appointments" class="page">
+      <div class="privacy">咨询区只显示必要的预约信息。正式个案记录仍保存在受权限控制的 Google Drive 中。</div>
+      <div class="panel"><div id="appointmentTable"></div></div>
+    </section>
+    <section id="cases" class="page">
+      <div class="privacy">这里仅显示个案代号、状态与记录入口，不在 GitHub 中保存任何咨询正文。</div>
+      <div class="cards" id="caseCards"></div>
+    </section>
+
+    <section id="setup" class="setup panel">
+      <h2>还差最后一步：连接 Google 数据接口</h2>
+      <p>网站前端已经部署代码，但为了避免把学生信息公开到 GitHub，真实数据不会写进仓库。连接 Google Apps Script 后，这个页面会自动从你的 Google Sheet 读取最新内容。</p>
+      <p class="muted">连接完成前，页面显示的是安全的空状态，不包含学生真实信息。</p>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
