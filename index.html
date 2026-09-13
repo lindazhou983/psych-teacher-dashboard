@@ -22,6 +22,7 @@
 
   <nav class="tabs">
     <button class="active" data-page="home">总览</button>
+    <button data-page="timetable">课表 / 日历</button>
     <button data-page="progress">课程进度矩阵</button>
     <button data-page="courses">课程资源库</button>
     <button data-page="weekly">本周重点</button>
@@ -56,37 +57,29 @@
       </div>
     </section>
 
+    <section id="timetable" class="page">
+      <div class="panel">
+        <div class="sectionTitle"><h2>夏季固定课表</h2><span>有效至 2026-09-30</span></div>
+        <div class="privacy" style="margin-bottom:14px">这些课程已同步进 Google Calendar；苹果日历绑定同一 Google 账号后也会显示。10月冬季作息启用后再统一换时间。</div>
+        <div id="timetableGrid"></div>
+      </div>
+    </section>
+
     <section id="progress" class="page">
-      <div class="panel">
-        <div class="sectionTitle"><h2>四年级</h2><span>4.1–4.6</span></div>
-        <div class="tableWrap" id="grade4"></div>
-      </div>
-      <div class="panel">
-        <div class="sectionTitle"><h2>五年级</h2><span>5.1–5.5</span></div>
-        <div class="tableWrap" id="grade5"></div>
-      </div>
+      <div class="panel"><div class="sectionTitle"><h2>四年级</h2><span>4.1–4.6</span></div><div class="tableWrap" id="grade4"></div></div>
+      <div class="panel"><div class="sectionTitle"><h2>五年级</h2><span>5.1–5.5</span></div><div class="tableWrap" id="grade5"></div></div>
     </section>
 
     <section id="courses" class="page"><div class="cards" id="courseCards"></div></section>
     <section id="weekly" class="page"><div class="panel"><div id="weeklyTable"></div></div></section>
     <section id="meetings" class="page"><div class="panel"><div id="meetingTable"></div></div></section>
-    <section id="appointments" class="page">
-      <div class="privacy">咨询区只显示必要的预约信息。正式个案记录仍保存在受权限控制的 Google Drive 中。</div>
-      <div class="panel"><div id="appointmentTable"></div></div>
-    </section>
-    <section id="cases" class="page">
-      <div class="privacy">这里仅显示个案代号、状态与记录入口，不在 GitHub 中保存任何咨询正文。</div>
-      <div class="cards" id="caseCards"></div>
-    </section>
+    <section id="appointments" class="page"><div class="privacy">咨询区只显示必要的预约信息。正式个案记录仍保存在受权限控制的 Google Drive 中。</div><div class="panel"><div id="appointmentTable"></div></div></section>
+    <section id="cases" class="page"><div class="privacy">这里仅显示个案代号、状态与记录入口，不在 GitHub 中保存任何咨询正文。</div><div class="cards" id="caseCards"></div></section>
 
-    <section id="setup" class="setup panel">
-      <h2>正在连接 Google 数据接口</h2>
-      <p>如果右上角显示“已同步 Google 数据”，这里会自动隐藏；如果显示失败，我会继续帮你排查。</p>
-      <p class="muted">真实数据仍保存在你的 Google Sheet / Drive 中，GitHub 只放网页代码。</p>
-    </section>
+    <section id="setup" class="setup panel"><h2>正在连接 Google 数据接口</h2><p>如果右上角显示“已同步 Google 数据”，这里会自动隐藏；如果显示失败，我会继续帮你排查。</p><p class="muted">真实数据仍保存在你的 Google Sheet / Drive 中，GitHub 只放网页代码。</p></section>
   </main>
 
   <script src="config.js?v=20260913-2"></script>
-  <script src="app.js?v=20260913-5"></script>
+  <script src="app.js?v=20260913-6"></script>
 </body>
 </html>
