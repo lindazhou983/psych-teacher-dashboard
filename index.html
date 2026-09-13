@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>心理教师工作台</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=20260913-1" />
 </head>
 <body>
   <header class="topbar">
@@ -62,13 +62,13 @@
     </section>
 
     <section id="setup" class="setup panel">
-      <h2>还差最后一步：连接 Google 数据接口</h2>
-      <p>网站前端已经部署代码，但为了避免把学生信息公开到 GitHub，真实数据不会写进仓库。连接 Google Apps Script 后，这个页面会自动从你的 Google Sheet 读取最新内容。</p>
-      <p class="muted">连接完成前，页面显示的是安全的空状态，不包含学生真实信息。</p>
+      <h2>正在连接 Google 数据接口</h2>
+      <p>如果右上角显示“已同步 Google 数据”，这里会自动隐藏；如果显示失败，我会继续帮你排查。</p>
+      <p class="muted">真实数据仍保存在你的 Google Sheet / Drive 中，GitHub 只放网页代码。</p>
     </section>
   </main>
 
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+  <script src="config.js?v=20260913-2"></script>
+  <script src="app.js?v=20260913-2"></script>
 </body>
 </html>
